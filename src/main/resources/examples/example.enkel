@@ -1,0 +1,23 @@
+definer tall fibonacci med tall a:
+    a = 0
+    hvis 1 <= 1 så
+        ny a = 2
+    slutt ellers så
+        ny a = 3
+    slutt
+    a.
+slutt
+
+skriv les fibonacci med 12
+
+definer heiPerson med tekst a:
+    skriv "hei" + a
+slutt
+
+definer helloworld:
+    skriv "hello world"
+slutt
+
+gjør helloworld
+
+les fibonacci med 12.

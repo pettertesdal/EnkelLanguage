@@ -1,0 +1,12 @@
+definer tall fibonacci med tall a:
+    hvis a <= 1 så
+        skriv "returning"
+        a.
+    slutt
+    skriv "HER"
+    b = gjør fibonacci med (a-1)
+    c = gjør fibonacci med (a-2)
+    b+c.
+slutt
+
+skriv gjør fibonacci med les tall

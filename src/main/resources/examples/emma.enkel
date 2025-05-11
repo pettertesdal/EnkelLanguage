@@ -1,0 +1,18 @@
+skriv "Hei Emma!"
+skriv "Hvordan går det?"
+
+definer tekst svar med tekst a:
+    hvis a == "bra" så
+        skriv "fantastisk"
+    slutt eller hvis a == "dårlig" så
+        skriv "så synd da"
+    slutt eller hvis a == "meh" så
+        skriv "noe vi kan gjøre med det?"
+    slutt eller hvis a == "vet ikke" så
+        skriv "hvorfor det?"
+    slutt ellers så
+        skriv "jeg forsto ikke"
+    slutt
+slutt
+
+gjør svar med les tekst.

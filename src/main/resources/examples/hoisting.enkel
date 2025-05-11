@@ -1,0 +1,8 @@
+definer tekst test:
+    heis a = 3
+    "test kjører".
+slutt
+
+skriv gjør test
+
+skriv a

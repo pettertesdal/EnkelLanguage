@@ -1,0 +1,14 @@
+definer tall fibonacci med tall a:
+    b = 0
+    hvis a <= 1 så
+        ny b = 2
+    slutt ellers så
+        skriv "her er jeg 2"
+        ny b = 3
+    slutt
+    b.
+slutt
+
+skriv "Her er jeg"
+
+skriv gjør fibonacci med les tall

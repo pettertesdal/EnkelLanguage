@@ -1,0 +1,3 @@
+loop til 4:
+    skriv "en loop"
+slutt

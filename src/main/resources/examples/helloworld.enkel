@@ -1,0 +1,5 @@
+definer helloWorld:
+    skriv "helloWorld".
+slutt
+
+gjør helloWorld.
