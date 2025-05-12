@@ -19,13 +19,11 @@ public class AntlrToProgram extends EnkelBaseVisitor<Program> {
         Program program = new Program();
         semanticErrors = new ArrayList<>();
 
-        // Helper visitor to make the subtree into an expression object
+        // Helper visitor to make the subtree into a statement object
         AntlrToASTObject ASTVisitor = new AntlrToASTObject(semanticErrors);
 
         for (int i = 0; i < ctx.getChildCount(); i++) {
             if(i == ctx.getChildCount()-1){
-                // Last child of the start symbol prog is EOF
-                // Do not visit this child, and convert it to an expression or statement
             } else {
                 program.addExpression(ASTVisitor.visit(ctx.getChild(i)));
             }

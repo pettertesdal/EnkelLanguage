@@ -47,9 +47,8 @@ public class EnkelREPL {
                     continue;
                 }
 
-
                 // Handle multi-line input for blocks
-                if (line.trim().endsWith(":")) {
+                if (line.trim().endsWith(":") || line.trim().endsWith("så")) {
                     line = line + "\n";
                     StringBuilder codeBlock = new StringBuilder(line);
                     String blockLine;
@@ -67,13 +66,13 @@ public class EnkelREPL {
                         codeBlock.append(blockLine);
 
                         // Count new colons and "slutt" keywords to track nesting
-                        blockCount += countOccurrences(blockLine, ":") - countOccurrences(blockLine, "slutt");
+                        blockCount += countOccurrences(blockLine, ":") + countOccurrences(blockLine, "så")
+                                - countOccurrences(blockLine, "slutt");
                     }
 
                     line = codeBlock.toString();
                 }
                 line = line + "\n";
-
 
                 // Process the input
                 processInput(line);
@@ -142,7 +141,7 @@ public class EnkelREPL {
     private void showHelp() {
         System.out.println("Enkel REPL Help:");
         System.out.println("  - Type Enkel code to execute it");
-        System.out.println("  - For multi-line blocks, start with a line ending in ':', and end them with 'slutt'");
+        System.out.println("  - For multi-line blocks, start with a line ending in ':', or 'så', and end them with 'slutt' (these can be nested");
         System.out.println("  - Variables and functions defined in one command are available in later commands");
         System.out.println("  - Commands:");
         System.out.println("    * exit, quit - Exit the REPL");

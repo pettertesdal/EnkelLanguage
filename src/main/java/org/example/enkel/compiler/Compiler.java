@@ -9,25 +9,24 @@ import org.example.EnkelParser;
 import org.example.enkel.interpreter.AntlrToProgram;
 import org.example.enkel.interpreter.Program;
 import org.example.enkel.interpreter.SymbolTable;
-import org.example.enkel.interpreter.app.EnkelREPL;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 public class Compiler {
-    private final Path sourcePath;
+    private final String sourcePath;
     private final SymbolTable symbolTable;
     private final LLVMCodeVisitor visitor;
 
-    public Compiler(Path sourcePath) {
+    public Compiler(String sourcePath) {
         this.sourcePath = sourcePath;
         this.symbolTable = new SymbolTable();
-        this.visitor = new LLVMCodeVisitor(sourcePath.getFileName().toString());
+        this.visitor = new LLVMCodeVisitor(sourcePath);
     }
 
     public void compile() {
         // 1. Parse the source file to get AST
-        EnkelParser parser = getParser(sourcePath.toString());
+        EnkelParser parser = getParser(sourcePath);
         ParseTree antlrTree = parser.program();
 
         AntlrToProgram programVisitor = new AntlrToProgram();
@@ -67,8 +66,7 @@ public class Compiler {
     public static void main(String[] args) {
         if (args.length >= 1) {
             String fileName = args[0];
-            Path sourcePath = Path.of(fileName);
-            Compiler compiler = new Compiler(sourcePath);
+            Compiler compiler = new Compiler(fileName);
             compiler.compile();
         } else {
             System.err.println("Wrong arguments provided");

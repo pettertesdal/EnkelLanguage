@@ -1,0 +1,12 @@
+b = 10
+definer tekst scopeTest:
+    ny b = 3
+    skriv "test"
+    b.
+slutt
+
+skriv b
+
+skriv gjør scopeTest
+
+skriv b

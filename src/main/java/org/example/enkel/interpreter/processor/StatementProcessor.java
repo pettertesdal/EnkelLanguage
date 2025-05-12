@@ -37,7 +37,7 @@ public class StatementProcessor {
                 if (ep.getSymbolTable() != null && ep.getSymbolTable().getHoisted() != null) {
                     this.symbolTable.merge(ep.getSymbolTable().getHoisted());
                 }
-                evaluations.add(processedExpression);
+                System.out.println(processedExpression);
             } else if (astObject instanceof Assignment) {
                 Assignment assignment = (Assignment) astObject;
                 String varName = assignment.getVarName();
@@ -88,7 +88,7 @@ public class StatementProcessor {
                     this.symbolTable.merge(ep.getSymbolTable().getHoisted());
                 }
 
-                evaluations.addAll(ep.getEvaluations());
+                this.evaluations.addAll(ep.getEvaluations());
                 return result;
             } else if (astObject instanceof Conditional) {
                 Conditional conditional = (Conditional) astObject;
@@ -172,7 +172,7 @@ public class StatementProcessor {
         return null;
     }
     public List<String> getEvaluations() {
-        return evaluations;
+        return this.evaluations;
     }
 }
 

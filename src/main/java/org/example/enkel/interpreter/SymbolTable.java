@@ -166,21 +166,37 @@ public class SymbolTable {
     }
 
 
+
     /**
      * Set the value of an existing variable
      * @throws RuntimeException if the variable doesn't exist or if the types don't match
      */
     public void setValue(String name, Value value, boolean isHoisted) {
-        if (!symbols.containsKey(name)) {
+        // Check if the variable exists in current table
+        if (symbols.containsKey(name)) {
+            Value currentValue = symbols.get(name);
+            if (currentValue.getType() != value.getType()) {
+                throw new RuntimeException("Cannot assign " + value.getType() +
+                        " to variable of type " + currentValue.getType());
+            }
+        }
+        // Check if the variable exists in parent table
+        else if (parent != null && parent.symbols.containsKey(name)) {
+            // Check type compatibility with parent's value
+            Value parentValue = parent.symbols.get(name);
+            if (parentValue.getType() != value.getType()) {
+                throw new RuntimeException("Cannot assign " + value.getType() +
+                        " to variable of type " + parentValue.getType());
+            }
+            // We're going to add it to the current symbol table
+            // (no need to throw an exception as it exists in parent)
+        }
+        // Not found in either current or parent tables
+        else {
             throw new RuntimeException("Variable " + name + " not declared");
         }
 
-        Value currentValue = symbols.get(name);
-        if (currentValue.getType() != value.getType()) {
-            throw new RuntimeException("Cannot assign " + value.getType() +
-                    " to variable of type " + currentValue.getType());
-        }
-
+        // Handle hoisted case
         if (isHoisted) {
             if (hoisted == null) {
                 hoisted = new SymbolTable();
@@ -201,6 +217,8 @@ public class SymbolTable {
                 }
             }
         }
+
+        // Always update in the current symbol table
         symbols.put(name, value);
     }
 

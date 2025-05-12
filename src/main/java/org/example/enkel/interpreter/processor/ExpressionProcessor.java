@@ -166,7 +166,6 @@ public class ExpressionProcessor {
         // Get function definition from symbol table
         FunctionDef function = symbolTable.getValue(name).get().asFunction();
 
-        System.out.println("Executing function " + name + " with arguments: " + args + " ...");
         // Create a new scope for function execution
         SymbolTable functionScope = new SymbolTable();
         functionScope.setParent(symbolTable);
